@@ -9,7 +9,7 @@ if __name__ == '__main__':
     consumed_topic_name = 'production_log_test'
 
     consumer = KafkaConsumer(consumed_topic_name,
-                         group_id='production_log_enrichment',
+                         group_id='production_log_duration_enrichment',
                          bootstrap_servers=['localhost:9092'], auto_offset_reset='earliest',
                          value_deserializer=lambda m: json.loads(m.decode('utf-8')))
     

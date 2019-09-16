@@ -13,12 +13,14 @@ def production_log_record_json(date_seed, id):
         production_log_record_dict(date_seed)
     , default=str)
 
-def production_log_record_dict(date_seed):
-    date_one = datetime.strptime(date_seed, production_log_time_format )
+def production_log_record_dict(date_seed_str):
+    date_one = datetime.strptime(date_seed_str, production_log_time_format )
+    if date_one > datetime.strptime('9000-01-01', production_log_time_format):
+        date_one = datetime.strptime('1900-01-01', production_log_time_format)
     rand_days = random.randint(1, 10)
     date_two = date_one + timedelta(days=rand_days)
     return {
-        'id': id,
+        'id': int(date_one.strftime('%Y%m%d')),
         'version': 2,
         'start': date_one.strftime(production_log_time_format),
         'end': date_two.strftime(production_log_time_format)

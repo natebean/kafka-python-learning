@@ -8,7 +8,7 @@ if __name__ == '__main__':
     parsed_topic_name = 'production_log_test'
 
     consumer = KafkaConsumer(parsed_topic_name,
-                         group_id='production_log_enrichment',
+                         group_id='production_log_consumer',
                          bootstrap_servers=['localhost:9092'], auto_offset_reset='earliest',
                          value_deserializer=lambda m: json.loads(m.decode('utf-8')))
     for message in consumer:
